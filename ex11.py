@@ -1,0 +1,17 @@
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_iris
+from sklearn.metrics import accuracy_score,classification_report
+from sklearn.naive_bayes import GaussianNB
+
+iris=load_iris()
+x=iris.data
+y=iris.target
+x_test,x_train,y_test,y_train=train_test_split(x,y,test_size=0.2, random_state=42)
+nb=GaussianNB()
+nb.fit(x_train,y_train)
+print(nb.predict(x_test))
+v=nb.predict(x_test)
+result=accuracy_score(y_test,v)
+report=classification_report(y_test,v,target_names=iris.target_names)
+print(result)
+print(report)
